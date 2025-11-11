@@ -1,0 +1,112 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Ohmylash Nail Care in </title>
+  <link rel="stylesheet" href="design.css" />
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="1231.jpg" alt="Lotus Nail Care Logo" class="logo-img">
+      <h1>Oh my Lash & Nails</h1>
+      <p>Nail Care and Eye lash</p>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li> 
+        <li><a href="#manicure">Manicure</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contacts">Contacts</a></li>
+      </ul>
+    </nav>
+
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="subtext">Nail care</p>
+      <h2>Enjoy the Best<br> lash and nail Services</h2>
+      <p class="description">Make your Lash & nails perfect right now!</p>
+      <a href="#book" class="btn">Book an Appointment</a>
+    </div>
+
+    <div class="hero-image">
+      <!-- Replace with your own image -->
+      <img src="pic 12.jpg" alt="Nail care image" />
+    </div>
+  </section>
+
+  <section id="book" class="booking">
+    <div class="container">
+      <h2>Book Your Appointment</h2>
+      <form id="booking-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Preferred Time</label>
+          <input type="time" id="time" name="time" required>
+        </div>
+        <div class="form-group">
+          <label for="service">Service</label>
+          <select id="service" name="service" required>
+            <option value="">Select a service</option>
+            <option value="manicure">Manicure</option>
+            <option value="pedicure">Pedicure</option>
+            <option value="nail-art">Nail Art</option>
+            <option value="gel-polish">Gel Polish</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Additional Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn">Submit Booking</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Receipt Modal -->
+  <div id="receipt-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Booking Receipt</h2>
+      <div id="receipt-details">
+        <p><strong>Name:</strong> <span id="receipt-name"></span></p>
+        <p><strong>Email:</strong> <span id="receipt-email"></span></p>
+        <p><strong>Phone:</strong> <span id="receipt-phone"></span></p>
+        <p><strong>Date:</strong> <span id="receipt-date"></span></p>
+        <p><strong>Time:</strong> <span id="receipt-time"></span></p>
+        <p><strong>Service:</strong> <span id="receipt-service"></span></p>
+        <p><strong>Message:</strong> <span id="receipt-message"></span></p>
+      </div>
+      <p>Thank you for your booking! We will contact you soon to confirm.</p>
+    </div>
+  </div>
+</body>
+</html>
