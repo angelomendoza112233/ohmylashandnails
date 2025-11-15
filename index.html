@@ -1,9 +1,10 @@
-  <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Ohmylash Nail Care in </title>
+  <title>Oh My Lash & Nails - Premium Beauty Care in Cebu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="design.css" />
   <script defer src="main.js"></script>
 </head>
@@ -16,12 +17,17 @@
     </div>
 
     <nav>
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li> 
-        <li><a href="#manicure">Manicure</a></li>
+      <button class="hamburger" id="hamburger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul id="nav-menu">
+        <li><a href="#" id="services-btn">Services</a></li>
+        <li><a href="#" id="portfolio-btn">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#contacts">Contacts</a></li> 
       </ul>
     </nav>
 
@@ -34,62 +40,123 @@
   </header>
 
   <section class="hero">
-    <div class="hero-text">
-      <p class="subtext">Nail care</p>
-      <h2>Enjoy the Best<br> lash and nail Services</h2>
-      <p class="description">Make your Lash & nails perfect right now!</p>
-      <a href="#book" class="btn">Book an Appointment</a>
-    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="subtext"><i class="fas fa-spa"></i> Premium Beauty Care</p>
+        <h2>Indulge in Luxurious<br> Lash & Nail Transformations</h2>
+        <p class="description">Elevate your beauty with our expert services. Achieve flawless lashes and nails that turn heads.</p>
+        <a href="#" id="book-btn" class="btn"><i class="fas fa-calendar-check"></i> Book Your Glow-Up</a>
+      </div>
 
-    <div class="hero-image">
-      <!-- Replace with your own image -->
-      <img src="pic 12.jpg" alt="Nail care image" />
+      <div class="hero-image">
+        <img src="pic 12.jpg" alt="Elegant nail art" />
+        <img src="121512.jpg" alt="Stunning eyelash extensions" />
+      </div>
     </div>
   </section>
 
-  <section id="book" class="booking">
-    <div class="container">
-      <h2>Book Your Appointment</h2>
-      <form id="booking-form">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-        <div class="form-group">
-          <label for="date">Preferred Date</label>
-          <input type="date" id="date" name="date" required>
-        </div>
-        <div class="form-group">
-          <label for="time">Preferred Time</label>
-          <input type="time" id="time" name="time" required>
-        </div>
-        <div class="form-group">
-          <label for="service">Service</label>
-          <select id="service" name="service" required>
-            <option value="">Select a service</option>
-            <option value="manicure">Manicure</option>
-            <option value="pedicure">Pedicure</option>
-            <option value="nail-art">Nail Art</option>
-            <option value="gel-polish">Gel Polish</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Additional Message</label>
-          <textarea id="message" name="message" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn">Submit Booking</button>
-      </form>
+  <!-- Maintenance Mode Banner -->
+  <div id="maintenance-banner" class="maintenance-banner" style="display: none;">
+    <div class="maintenance-content">
+      <i class="fas fa-tools"></i>
+      <h3>We're Currently Under Maintenance</h3>
+      <p>Our website is temporarily unavailable while we make some improvements. We'll be back soon!</p>
+      <p>Please check back later or contact us directly.</p>
     </div>
-  </section>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="modal">
+    <div class="booking-card modal-content">
+      <span class="booking-close close">&times;</span>
+      <div class="booking-navigation">
+        <button id="step1-btn" class="active">Step 1</button>
+        <button id="step2-btn">Step 2</button>
+        <button id="step3-btn">Step 3</button>
+      </div>
+      <div class="booking-card-inner">
+        <!-- Step 1: Personal Info -->
+        <div class="booking-step" id="step1">
+          <h2 class="booking-title">Book Your Appointment - Step 1</h2>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+        </div>
+
+        <!-- Step 2: Date & Time -->
+        <div class="booking-step" id="step2">
+          <h2 class="booking-title">Book Your Appointment - Step 2</h2>
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="form-group">
+            <label for="time">Preferred Time</label>
+            <input type="time" id="time" name="time" required>
+          </div>
+        </div>
+
+        <!-- Step 3: Service & Submit -->
+        <div class="booking-step" id="step3">
+          <h2 class="booking-title">Book Your Appointment - Step 3</h2>
+          <div class="form-group">
+            <label>Services (Select multiple if needed)</label>
+            <div class="services-checkboxes">
+              <div class="service-group">
+                <h2>Nail Services</h2>
+                <label><input type="checkbox" name="service" value="Softgel Extension - Plain Color"> Softgel Extension - Plain Color</label><br>
+                <label><input type="checkbox" name="service" value="Softgel Extension - W/ minimal Design"> Softgel Extension - W/ minimal Design</label><br>
+                <label><input type="checkbox" name="service" value="Softgel Extension - W/ Rhinestones"> Softgel Extension - W/ Rhinestones</label><br>
+                <label><input type="checkbox" name="service" value="Basic Gel Manicure - Plain Color"> Basic Gel Manicure - Plain Color</label><br>
+                <label><input type="checkbox" name="service" value="Basic Gel Manicure - W/ minimal Design"> Basic Gel Manicure - W/ minimal Design</label><br>
+                <label><input type="checkbox" name="service" value="Basic Gel Manicure - W/ Rhinestones"> Basic Gel Manicure - W/ Rhinestones</label><br>
+                <label><input type="checkbox" name="service" value="Toe Nails - Softgel Extension — Plain Color"> Toe Nails - Softgel Extension — Plain Color</label><br>
+                <label><input type="checkbox" name="service" value="Toe Nails - W/ minimal Design"> Toe Nails - W/ minimal Design</label><br>
+                <label><input type="checkbox" name="service" value="Toe Nails - W/ Rhinestones"> Toe Nails - W/ Rhinestones</label><br>
+                <label><input type="checkbox" name="service" value="Basic Gel Pedicure - Plain Color"> Basic Gel Pedicure - Plain Color</label><br>
+                <label><input type="checkbox" name="service" value="Basic Gel Pedicure - W/ minimal Design"> Basic Gel Pedicure - W/ minimal Design</label><br>
+                <label><input type="checkbox" name="service" value="Basic Gel Pedicure - W/ Rhinestones"> Basic Gel Pedicure - W/ Rhinestones</label><br>
+                <label><input type="checkbox" name="service" value="Removal - Structured mani"> Removal - Structured mani</label><br>
+                <label><input type="checkbox" name="service" value="Removal - Structured mani (Not my Work)"> Removal - Structured mani (Not my Work)</label><br>
+                <label><input type="checkbox" name="service" value="Removal - Softgel Extension"> Removal - Softgel Extension</label><br>
+                <label><input type="checkbox" name="service" value="Removal - Softgel Extension (Not my Work)"> Removal - Softgel Extension (Not my Work)</label><br>
+                <label><input type="checkbox" name="service" value="Removal - Removal Only"> Removal - Removal Only</label><br>
+                <label><input type="checkbox" name="service" value="Extra / Length - Short"> Extra / Length - Short</label><br>
+                <label><input type="checkbox" name="service" value="Extra / Length - Medium"> Extra / Length - Medium</label><br>
+                <label><input type="checkbox" name="service" value="Extra / Length - Long"> Extra / Length - Long</label><br>
+                <label><input type="checkbox" name="service" value="Extra / Length - Extra Long"> Extra / Length - Extra Long</label><br>
+              </div>
+              <div class="service-group">
+                <h2>Lash Services</h2>
+                <label><input type="checkbox" name="service" value="Classic Lashes - Full Set"> Classic Lashes - Full Set</label><br>
+                <label><input type="checkbox" name="service" value="Classic Lashes - Refill (1-2 weeks)"> Classic Lashes - Refill (1-2 weeks)</label><br>
+                <label><input type="checkbox" name="service" value="Hybrid Lashes - Full Set"> Hybrid Lashes - Full Set</label><br>
+                <label><input type="checkbox" name="service" value="Hybrid Lashes - Refill (1-2 weeks)"> Hybrid Lashes - Refill (1-2 weeks)</label><br>
+                <label><input type="checkbox" name="service" value="Volume Lashes - Full Set"> Volume Lashes - Full Set</label><br>
+                <label><input type="checkbox" name="service" value="Volume Lashes - Refill (1-2 weeks)"> Volume Lashes - Refill (1-2 weeks)</label><br>
+                <label><input type="checkbox" name="service" value="MegaVolume Lashes - Full Set"> MegaVolume Lashes - Full Set</label><br>
+                <label><input type="checkbox" name="service" value="MegaVolume Lashes - Refill (1-2 weeks)"> MegaVolume Lashes - Refill (1-2 weeks)</label><br>
+                <label><input type="checkbox" name="service" value="Lashlift - Full Set"> Lashlift - Full Set</label><br>
+                <label><input type="checkbox" name="service" value="Brow Lamination / W Shaping - Full Set"> Brow Lamination / W Shaping - Full Set</label><br>
+                <label><input type="checkbox" name="service" value="Removal - My Work"> Removal - My Work</label><br>
+                <label><input type="checkbox" name="service" value="Removal - Not my work"> Removal - Not my work</label><br>
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="submit-booking" class="btn">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Receipt Modal -->
   <div id="receipt-modal" class="modal">
@@ -108,5 +175,262 @@
       <p>Thank you for your booking! We will contact you soon to confirm.</p>
     </div>
   </div>
+
+  <!-- Services / Price Modal -->
+  <div id="services-modal" class="modal">
+    <div class="services-card modal-content">
+    <button type="button" class="services-close close">&times;</button>
+      <div class="services-navigation">
+        <button id="nail-btn" class="active">Nail Services</button>
+        <button id="lash-btn">Lash Services</button>
+      </div>
+      <div class="services-card-inner">
+        <!-- Step 1: Nail Services -->
+        <div class="services-step" id="nail-step">
+          <h2 class="services-title">Oh my Lash and Nails — Nail Services</h2>
+
+          <div class="price-columns">
+            <div class="col">
+              <h3>Softgel Extension</h3>
+              <ul>
+                <li>Plain Color .................................. ₱550 - ₱600</li>
+                <li>W/ minimal Design ..................... ₱650 - ₱800</li>
+                <li>W/ Rhinestones .......................... ₱900 - ₱1200</li>
+              </ul>
+
+              <h3>Basic Gel Manicure</h3>
+              <ul>
+                <li>Plain Color .................................. ₱400 - ₱450</li>
+                <li>W/ minimal Design ..................... ₱500 - ₱550</li>
+                <li>W/ Rhinestones .......................... ₱600 - ₱800</li>
+              </ul>
+            </div>
+
+            <div class="col">
+              <h3>Toe Nails</h3>
+              <ul>
+                <li>Softgel Extension — Plain Color ...... ₱600 - ₱650</li>
+                <li>W/ minimal Design ........................ ₱700 - ₱800</li>
+                <li>W/ Rhinestones ............................ ₱900 - ₱1000</li>
+              </ul>
+
+              <h3>Basic Gel Pedicure</h3>
+              <ul>
+                <li>Plain Color .................................. ₱450 - ₱500</li>
+                <li>W/ minimal Design ..................... ₱600 - ₱650</li>
+                <li>W/ Rhinestones .......................... ₱700 - ₱800</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Removal</h3>
+          <ul class="removal-list">
+            <li>Structured mani ................................... ₱100</li>
+            <li>(Not my Work) .................................... ₱150</li>
+            <li>Softgel Extension ................................. ₱150</li>
+            <li>(Not my Work) .................................... ₱200</li>
+            <li>Removal Only ..................................... ₱200</li>
+          </ul>
+
+          <div class="extra">
+            <h3>Extra / Length</h3>
+            <ul>
+              <li>Short .................................. None</li>
+              <li>Medium ................................. None</li>
+              <li>Long .................................... ₱100</li>
+              <li>Extra Long .......................... ₱200</li>
+            </ul>
+          </div>
+
+          <p class="note">Take note • Prices may vary depending on your design.</p>
+        </div>
+
+        <!-- Step 2: Lash Services -->
+        <div class="services-step" id="lash-step" style="display:none">
+          <h2 class="services-title">Oh my Lash and Nails — Lash Services</h2>
+
+          <h3>Classic Lashes:</h3>
+          <ul>
+            <li>Full Set ........................................... ₱400</li>
+            <li>Refill (1-2 weeks) ........................... ₱250 - ₱300</li>
+          </ul>
+
+          <h3>Hybrid Lashes:</h3>
+          <ul>
+            <li>Full Set ........................................... ₱499</li>
+            <li>Refill (1-2 weeks) ........................... ₱300 - ₱350</li>
+          </ul>
+
+          <h3>Volume Lashes:</h3>
+          <ul>
+            <li>Full Set ........................................... ₱599</li>
+            <li>Refill (1-2 weeks) ........................... ₱350 - ₱400</li>
+          </ul>
+
+          <h3>MegaVolume Lashes:</h3>
+          <ul>
+            <li>Full Set ........................................... ₱699</li>
+            <li>Refill (1-2 weeks) ........................... ₱400 - ₱450</li>
+          </ul>
+
+          <h3>Lashlift</h3>
+          <ul>
+            <li>Full Set ........................................... ₱399</li>
+          </ul>
+
+          <h3>Brow Lamination / W Shaping</h3>
+          <ul>
+            <li>Full Set ........................................... ₱450</li>
+          </ul>
+
+          <h3>Removal</h3>
+          <ul class="removal-list">
+            <li>My Work ............................................. ₱50</li>
+            <li>Not my work ....................................... ₱100</li>
+          </ul>
+
+          <p class="note">Get ready to enhance your natural beauty.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal -->
+  <div id="portfolio-modal" class="modal">
+    <div class="portfolio-card modal-content">
+      <span class="portfolio-close close">&times;</span>
+      <h2 class="portfolio-title">My Portfolio</h2>
+      <div id="portfolio-grid" class="portfolio-grid">
+        <!-- Portfolio images will be loaded here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2><i class="fas fa-heart"></i> About Us</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Welcome to <strong>Oh My Lash & Nails</strong>, where beauty meets artistry. We specialize in premium lash and nail services that enhance your natural elegance and boost your confidence.</p>
+          <p>Our skilled technicians use only the highest quality products and techniques to deliver stunning results. Whether you're looking for dramatic volume lashes or flawless gel nails, we tailor each service to your unique style.</p>
+          <p>Experience the difference of personalized care in a relaxing, hygienic environment. Your satisfaction is our passion.</p>
+        </div>
+        <div class="about-image">
+          <img src="www.jpg" alt="Our salon interior" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2><i class="fas fa-star"></i> What Our Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"Absolutely love my lashes! The service was professional and the results are amazing. Highly recommend!"</p>
+            <div class="testimonial-author">
+              <strong>Sarah M.</strong>
+              <span>Volume Lashes Client</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"Best nail salon in town! My gel manicure looks perfect and lasted for weeks. The staff is so friendly."</p>
+            <div class="testimonial-author">
+              <strong>Jessica L.</strong>
+              <span>Gel Manicure Client</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"I've been coming here for both lashes and nails. Consistent quality and beautiful results every time!"</p>
+            <div class="testimonial-author">
+              <strong>Maria G.</strong>
+              <span>Regular Client</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts Section -->
+  <section id="contacts" class="contacts">
+    <div class="container">
+      <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+      <div class="contacts-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>📍 Location</h3>
+            <p>Minglanilla lurdes chapel<br>Cebu, Philippines</p>
+          </div>
+          <div class="contact-item">
+            <h3>📞 Phone</h3>
+            <p>+63 912 345 6789</p>
+          </div>
+          <div class="contact-item">
+            <h3>📧 Email</h3>
+            <p>ohmylashandnails_@gmail.com</p>
+          </div>
+          <div class="contact-item">
+            <h3>🕒 Hours</h3>
+            <p>Mon-Fri: 8AM-11:59PM<br>Sat-Sun: 10AM-6PM</p>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3>Oh My Lash & Nails</h3>
+          <p>Your beauty, our passion</p>
+        </div>
+        <div class="footer-links">
+          <a href="#services-btn">Services</a>
+          <a href="#portfolio-btn">Portfolio</a>
+          <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contacts">Contacts</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=61550899421768" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-facebook"></i>
+</a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Oh My Lash & Nails. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

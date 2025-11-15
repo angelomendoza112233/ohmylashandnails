@@ -17,26 +17,56 @@
 
   <section class="admin">
     <div class="container">
-      <h2>All Bookings</h2>
-      <table id="bookings-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Service</th>
-            <th>Message</th>
-            <th>Created At</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="bookings-body">
-          <!-- Bookings will be populated here -->
-        </tbody>
-      </table>
+      <!-- Maintenance Mode Toggle -->
+      <div class="admin-card">
+        <h2><i class="fas fa-cog"></i> System Settings</h2>
+        <div class="setting-item">
+          <label for="maintenance-toggle">
+            <i class="fas fa-tools"></i> Maintenance Mode
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="maintenance-toggle">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <p class="setting-description">When enabled, the website will show a maintenance page to visitors.</p>
+      </div>
+
+      <!-- Portfolio Management -->
+      <div class="admin-card">
+        <h2><i class="fas fa-images"></i> Portfolio Management</h2>
+        <div class="upload-section">
+          <input type="file" id="portfolio-file" accept="image/*" multiple>
+          <button id="upload-btn" class="btn"><i class="fas fa-upload"></i> Upload Images</button>
+        </div>
+        <div id="portfolio-preview" class="portfolio-preview">
+          <!-- Current portfolio images will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Bookings Management -->
+      <div class="admin-card">
+        <h2><i class="fas fa-calendar-check"></i> All Bookings</h2>
+        <table id="bookings-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Service</th>
+              <th>Message</th>
+              <th>Created At</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-body">
+            <!-- Bookings will be populated here -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 </body>
