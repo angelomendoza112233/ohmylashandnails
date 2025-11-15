@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
+// Create Express app
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Vercel serverless function export
 module.exports = app;
@@ -122,7 +122,7 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+// For Vercel serverless, don't start the server - just export the app
+// app.listen(PORT, () => {
+//   console.log(`Server running at http://localhost:${PORT}`);
+// });
