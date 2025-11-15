@@ -11,10 +11,11 @@ module.exports = app;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve static files (HTML, CSS, JS)
+// Serve static files (HTML, CSS, JS) - Vercel handles static files automatically
+// but we need to serve them through Express for serverless
 app.use(express.static(path.join(__dirname)));
 
 // In-memory storage for bookings (since SQLite doesn't work in Vercel serverless)
