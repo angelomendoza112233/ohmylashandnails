@@ -2,9 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-const multer = require('multer');
-const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,49 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname)));
 
-// Ensure image directory exists
-const imageDir = path.join(__dirname, 'image');
-if (!fs.existsSync(imageDir)) {
-  fs.mkdirSync(imageDir);
-}
-
-// For Vercel, we'll use memory storage for file uploads
-const storage = multer.memoryStorage();
-
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
-      cb(null, true);
-    } else {
-      cb(new Error('Only image files are allowed!'), false);
-    }
-  },
-  limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
-  }
-});
-
-// Database setup - Use in-memory database for Vercel serverless
-const db = new sqlite3.Database(':memory:', (err) => {
-  if (err) {
-    console.error('Error opening database:', err.message);
-  } else {
-    console.log('Connected to SQLite database.');
-    // Create bookings table if it doesn't exist
-    db.run(`CREATE TABLE IF NOT EXISTS bookings (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL,
-      phone TEXT NOT NULL,
-      date TEXT NOT NULL,
-      time TEXT NOT NULL,
-      service TEXT NOT NULL,
-      message TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
-  }
-});
+// In-memory storage for bookings (since SQLite doesn't work in Vercel serverless)
+let bookings = [];
+let bookingIdCounter = 1;
+let maintenanceMode = false;
 
 // API endpoint to handle booking submissions
 app.post('/api/book', (req, res) => {
@@ -72,45 +30,41 @@ app.post('/api/book', (req, res) => {
     return res.status(400).json({ error: 'All required fields must be filled' });
   }
 
-  db.run(`INSERT INTO bookings (name, email, phone, date, time, service, message) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [name, email, phone, date, time, service, message || ''], function(err) {
-      if (err) {
-        console.error('Error inserting booking:', err.message);
-        return res.status(500).json({ error: 'Failed to save booking' });
-      }
-      res.json({ success: true, booking: { id: this.lastID, name, email, phone, date, time, service, message: message || '', createdAt: new Date() } });
-    });
+  const booking = {
+    id: bookingIdCounter++,
+    name,
+    email,
+    phone,
+    date,
+    time,
+    service,
+    message: message || '',
+    createdAt: new Date().toISOString()
+  };
+
+  bookings.push(booking);
+  res.json({ success: true, booking });
 });
 
 // API endpoint to get all bookings (for admin)
 app.get('/api/bookings', (req, res) => {
-  db.all(`SELECT id, name, email, phone, date, time, service, message, created_at as createdAt FROM bookings ORDER BY created_at DESC`, [], (err, rows) => {
-    if (err) {
-      console.error('Error fetching bookings:', err.message);
-      return res.status(500).json({ error: 'Failed to fetch bookings' });
-    }
-    res.json(rows);
-  });
+  res.json(bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
 });
 
 // API endpoint to delete a booking by ID
 app.delete('/api/bookings/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  db.run(`DELETE FROM bookings WHERE id = ?`, [id], function(err) {
-    if (err) {
-      console.error('Error deleting booking:', err.message);
-      return res.status(500).json({ error: 'Failed to delete booking' });
-    }
-    if (this.changes === 0) {
-      return res.status(404).json({ error: 'Booking not found' });
-    }
-    res.json({ success: true });
-  });
+  const index = bookings.findIndex(b => b.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'Booking not found' });
+  }
+
+  bookings.splice(index, 1);
+  res.json({ success: true });
 });
 
 // Maintenance Mode API
-let maintenanceMode = false;
-
 app.get('/api/maintenance', (req, res) => {
   res.json({ enabled: maintenanceMode });
 });
@@ -147,22 +101,14 @@ app.get('/api/portfolio', (req, res) => {
   res.json(staticImages);
 });
 
-app.post('/api/portfolio/upload', upload.array('images', 10), (req, res) => {
-  if (!req.files || req.files.length === 0) {
-    return res.status(400).json({ error: 'No files uploaded' });
-  }
-
-  // For Vercel, we'll simulate file storage by returning success
-  // In a real deployment, you'd use cloud storage like AWS S3, Cloudinary, etc.
-  const uploadedFiles = req.files.map((file, index) => {
-    const filename = `uploaded-${Date.now()}-${index}${path.extname(file.originalname)}`;
-    return {
-      filename: filename,
-      url: `/image/${filename}` // This won't work in serverless, but for demo purposes
-    };
+app.post('/api/portfolio/upload', (req, res) => {
+  // For Vercel serverless, simulate file upload success
+  // In production, you'd use cloud storage like AWS S3, Cloudinary, etc.
+  res.json({
+    success: true,
+    files: [],
+    note: 'File upload simulated - use cloud storage for production'
   });
-
-  res.json({ success: true, files: uploadedFiles, note: 'File upload simulated - use cloud storage for production' });
 });
 
 app.delete('/api/portfolio/:filename', (req, res) => {
